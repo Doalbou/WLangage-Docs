@@ -1,0 +1,272 @@
+```
+WINDEV WEBDEV WINDEV Mobile
+```
+
+Présentation
+
+Vous disposez d'une connexion Internet active sur votre poste de développement? Vous pouvez télécharger
+automatiquement les diérentes mises à jour des éditeurs (WINDEV, WEBDEV et WINDEV Mobile) grâce à
+l'"Automatic update".
+
+Ce mécanisme analyse votre ordinateur pour rechercher les produits PC SOFT à actualiser et vous fournir une
+liste de mises à jour adaptées à vos besoins. Vous utilisez ainsi toujours la version la plus récente des produits PC
+SOFT.
+
+Aucune information personnelle n'est envoyée au serveur.
+
+Bien entendu, ce mécanisme n'est pas obligatoire, vous pouvez le débrancher. Il est toujours possible de visiter
+le site PC SOFT pour télécharger manuellement les mises à jour disponibles pour les produits PC SOFT utilisés.
+
+Lancer l'Automatic Update
+
+Pour lancer l'application "Automatic update" :
+
+1. Lancez un des produits WINDEV, WEBDEV ou WINDEV Mobile.
+2. Sous le volet "Accueil", dans le groupe "Aide en ligne", déroulez "Informations sur le Web" et sélectionnez
+   "Mettre à jour XXX" (où XXX correspond au produit utilisé).
+
+```
+Autres
+```
+
+# Automatic update des éditeurs
+
+3. L'interface de l'application "Automatic update" s"ache.
+
+Remarque : Selon la conguration de l'application "Automatic update", il est possible de lancer cette application
+au démarrage de la session Windows.
+
+Comment le faire?
+
+Congurer les produits à prendre en compte
+
+Au premier lancement de l'application "Automatic update", une recherche est eectuée pour trouver les
+diérents produits utilisés sur le poste en cours.
+
+Il se peut que des produits PC SOFT ne soient pas trouvés ou que des produits détectés ne vous conviennent pas.
+
+Pour ajouter un produit :
+
+1. Dans la barre de titre de l'application "Automatic Update", cliquez sur l'icône.
+
+2. Dans le menu qui s'ache, sélectionnez l'option "Ajouter un produit à l'Automatic Update".
+3. Sélectionnez l'exécutable correspondant au produit voulu grâce à l'explorateur de chiers et validez.
+4. Le produit voulu est automatiquement aché dans l'application "Automatic Update". Il est possible de lancer
+   immédiatement une recherche des mises à jour pour ce produit.
+
+Pour ne pas prendre en compte un produit :
+
+1. Dans l'application "Automatic Update", déroulez le menu contextuel du bouton "Lancer" correspondant au
+   produit à ne plus prendre en compte.
+
+2. Vous pouvez :
+   Sélectionner l'option "Ne plus mettre à jour" : dans ce cas, un verrou apparaît dans les caractéristiques du
+   produit, indiquant que les mises à jour ne seront plus recherchées automatiquement pour ce produit. Les
+   recherches de mises à jour peuvent être eectuées manuellement.
+   Sélectionner l'option "Masquer de l'Automatic Update" : dans ce cas, le produit ne sera plus aché dans
+   l'application "Automatic Update".
+   Attention :
+   Si les options "Ne plus mettre à jour" et "Masquer de l'Automatic Update" sont utilisées, le produit
+   n'apparaitra plus dans l'application "Automatic Update" et aucune recherche de mise à jour automatique
+   ne sera plus eectuée.
+   Si seule l'option "Masquer de l'Automatic Update" est utilisée, le produit n'apparaîtra plus dans
+   l'application "Automatic Update". Aucune recherche de mise à jour automatique ne sera eectuée tant
+   que le produit sera masqué.
+
+Remarque : Il est possible à tout moment d'acher des produits masqués via l'option "Acher les produits
+
+masqués" du menu aché via l'icône.
+
+Recherche automatique des mises à jour
+
+Lors du lancement de l'application "Automatic Update", une vérication des mises à jour disponibles est
+automatiquement réalisée pour les produits non masqués et non verrouillés.
+
+Si une mise à jour est disponible, une notication apparaît automatiquement sous la barre de titre de
+l'application. Un clic sur le lien "Acher" permet de connaître le produit concerné par cette mise à jour.
+
+Recherche manuelle des mises à jour
+
+L'application "Automatic Update" permet d'eectuer une recherche manuelle des mises à jour :
+Soit pour tous les produits listés :
+
+1. Dans la barre de titre de l'application "Automatic Update", cliquez sur l'icône.
+2. Dans le menu qui s'ache, sélectionnez l'option "Rechercher des mises à jour".
+
+```
+soit pour un produit spécique :
+```
+
+1. Dans l'application "Automatic Update", déroulez le menu contextuel du bouton "Lancer" correspondant au
+   produit à ne plus prendre en compte.
+2. Sélectionnez l'option "Rechercher les mises à jour".
+3. La recherche de la mise à jour est eectuée.
+
+Installer une mise à jour
+
+Lorsqu'une mise à jour est disponible :
+une notication est achée en haut de l'application.
+le bouton "Lancer" présent sur la ligne du produit concerné se change en bouton "Mettre à jour" ou
+"Télécharger" (selon le choix eectué dans les paramètres). Pour plus de détails, consultez
+Congurer Automatic Update.
+
+En cliquant :
+
+```
+sur le bouton "Télécharger", le téléchargement commence.
+sur le bouton "Mettre à jour", la mise à jour de l'application est installée.
+```
+
+```
+WINDEV WEBDEV WINDEV Mobile
+```
+
+Présentation
+
+Automatic Update est une application permettant de mettre à jour automatiquement ou manuellement les
+diérents produits PC SOFT que vous possédez.
+
+Il est possible de congurer :
+
+```
+Le lancement de l'application.
+Le répertoire de téléchargement des mises à jour.
+La bande passante utilisée.
+```
+
+Comment le faire?
+
+Pour congurer Automatic Update :
+
+1. Dans la barre de titre de l'application "Automatic Update", cliquez sur l'icône.
+2. Dans le menu qui s'ache, sélectionnez l'option "Paramètres".
+
+```
+Autres
+```
+
+# Congurer Automatic Update
+
+3. La fenêtre de paramétrage s'ache :
+
+Options de conguration
+
+Général
+
+L'option "Lancer au démarrage de Windows" permet de lancer automatiquement l'application "Automatic
+Update" au lancement de Windows. Cette option permet de s'assurer qu'une recherche automatique est réalisée
+à chaque démarrage.
+
+Remarque : Une recherche automatique des mises à jour est eectuée toutes les 24 heures.
+
+Téléchargement
+
+Deux modes sont disponibles pour le téléchargement des mises à jour. Il est possible de :
+Télécharger automatiquement les mises à jour : dans ce cas, vous pouvez lancer directement l'installation de
+la mise à jour pour le produit voulu depuis "Automatic Update" (bouton "Mise à jour").
+Me demander pour télécharger : dans ce cas, un message informe qu'une mise à jour est disponible et
+propose le téléchargement. Vous pouvez lancer le téléchargement de la mise à jour également pour le
+produit voulu (via le bouton "Télécharger" présent sur la ligne du produit). Une notication est également
+achée en haut de l'application. Si plusieurs mises à jour sont disponibles, un lien "Tout télécharger" est
+aché.
+
+Il est également possible de :
+
+```
+spécier un répertoire de téléchargement des mises à jour. Par défaut, le répertoire de téléchargement des
+mises à jour des produits PC SOFT est le suivant : "C:\ProgramData\PC SOFT\AutomaticUpdate\Packages".
+Pour changer ce répertoire, il sut de spécier un autre chemin.
+Remarque : Lors de l'installation d'une mise à jour, le chier téléchargé n'est pas automatiquement eacé.
+indiquer une limite pour l'espace de téléchargement.
+spécier une durée limite de conservation des téléchargements.
+autoriser le téléchargement des mises à jour de produit en niveau 1 de validation. Dans ce cas, les mises à
+jour avec uniquement une première phase de validation seront également proposées. Pour plus de détails
+sur les diérentes phases de validation, consultez Validation d'une version.
+```
+
+Bande passante
+
+Il est possible de limiter la bande passante des téléchargements en arrière-plan comme au premier plan.
+
+```
+WINDEV WEBDEV WINDEV Mobile
+```
+
+Présentation
+
+Les questions les plus fréquemment posées sur le mécanisme de recherche des mises à jour sont les
+suivantes :
+
+```
+Quelles mises à jour dois-je télécharger?
+Quelles informations sont envoyées à PC SOFT pendant le processus de détection et d'installation des mises à
+jour?
+Quelles langues sont prises en charge?
+Combien de fois dois-je exécuter la recherche de mise à jour pour obtenir la version la plus récente de mon
+produit?
+Je ne veux pas installer de mises à jour de produits depuis le Web. Puis-je télécharger les mises à jour sur
+mon ordinateur et les installer moi-même?
+J'utilise un pare-feu. Puis-je utiliser la recherche de mise à jour?
+J'utilise un proxy. Puis-je utiliser la recherche de mise à jour?
+Comment puis-je désinstaller les mises à jour?
+```
+
+Quelles mises à jour dois-je télécharger?
+
+Les mises à jour détectées par l'application "Automatic Update" correspondent aux produits PC SOFT que vous
+utilisez. Les mises à jour proposées vous permettent de proter rapidement des dernières nouveautés
+disponibles pour vos diérents produits.
+
+Quelles informations sont envoyées à PC SOFT pendant le processus de détection et d'installation des
+mises à jour?
+
+PC SOFT ne reçoit aucune information personnelle ou liée au produit utilisé (nom du produit, numéro de série,
+etc) pendant le processus de détection et d'installation des mises à jour. Seule l'adresse IP de votre poste est
+connu.
+
+Quelles langues sont prises en charge?
+
+Automatic Update est un logiciel multilingue, dont l'interface est disponible en français et en anglais. Les mises à
+jour proposées dépendront de la langue du produit installé sur votre poste (Version Française ou Internationale).
+
+Cette option n'est pas disponible dans cette version.
+
+```
+Autres
+```
+
+# Questions fréquentes sur Automatic
+
+# Update
+
+Combien de fois dois-je exécuter la recherche de mise à jour pour obtenir la version la plus récente de
+mon produit?
+
+A chaque exécution de Automatic Update, les mises à jour utilisables avec la version actuelle de votre produit
+vous sont proposées.
+
+Après chaque mise à jour eectuée, il est conseillé de ré-exécuter la recherche de mises à jour pour savoir si de
+nouvelles mises à jour sont disponibles.
+
+Je ne veux pas installer de mises à jour de produits depuis le Web. Puis-je télécharger les mises à jour sur
+mon ordinateur et les installer moi-même?
+
+Oui, vous pouvez télécharger des mises à jour et les installer localement sur votre ordinateur. Toutes les mises à
+jour sont disponibles sur le site de PC SOFT, espace Téléchargement.
+
+J'utilise un pare-feu. Puis-je utiliser la recherche de mise à jour?
+
+Si vous utilisez un pare-feu demandant l'autorisation à chaque connexion, il est nécessaire de répondre "Oui"
+pour que la recherche des mises à jour fonctionne.
+
+Si vous utilisez un pare-feu silencieux, il ne sera pas possible d'utiliser le mécanisme de mise à jour des éditeurs.
+
+J'utilise un proxy. Puis-je utiliser la recherche de mise à jour?
+
+Si vous utilisez un proxy, il est possible d'utiliser le mécanisme de mise à jour des éditeurs. Ce mécanisme utilise
+les paramètres du proxy congurés dans Internet Explorer.
+
+Comment désinstaller les mises à jour?
+
+PC SOFT ne prend pas en charge la suppression des mises à jour des diérents produits PC SOFT. Pour
+supprimer les mises à jour installées, vous devez désinstaller le produit de votre ordinateur, puis le réinstaller.
