@@ -4,6 +4,34 @@ Cette charte regroupe l’ensemble des conventions de nommage, bonnes pratiques 
 
 ---
 
+## 🔁 Structure et retour de procédure
+
+- ✅ Toujours utiliser `RENVOYER (...)` pour terminer une procédure. **Ne jamais utiliser `RETOUR (...)`** dans une procédure standard.
+- ✅ La valeur `vW_Retour` **ne doit être déclarée que si** plus d'une valeur de retour est nécessaire, en plus de `bW_Retour` et `cW_Retour`.
+- ✅ En cas de succès, préférer :
+
+  ```wlangage
+  RENVOYER (Vrai, cW_Retour, cP_DossierDestination)
+  ```
+
+  plutôt que d’assigner les valeurs à `bW_`, `cW_`, `vW_` avant un `RETOUR`.
+
+## ⚠️ Logique conditionnelle
+
+- ✅ Toujours expliciter les conditions booléennes :
+
+  ```wlangage
+  SI fDossierExiste(cP_Chemin) = Faux ALORS
+  ```
+
+  au lieu de :
+
+  ```wlangage
+  SI PAS fDossierExiste(cP_Chemin) ALORS
+  ```
+
+- ✅ Même chose pour les positifs : écrire `SI fFonction(...) = Vrai` plutôt que simplement `SI fFonction(...)`.
+
 ## 📌 Bonnes pratiques complètes (WLangage / WinDev)
 
 ### 🥇 Fondamentaux
@@ -28,8 +56,6 @@ Cette charte regroupe l’ensemble des conventions de nommage, bonnes pratiques 
 - Regrouper les fonctions métier dans des **collections de procédures** (`COL_`).
 - Éviter tout **nom abrégé ou ambigu** dans le code métier.
 
----
-
 ### 🥈 Lisibilité & cohérence
 
 - **Limiter la profondeur des procédures imbriquées**  
@@ -48,8 +74,6 @@ Cette charte regroupe l’ensemble des conventions de nommage, bonnes pratiques 
   cW_Texte = bW_Actif ? "Actif" : "Inactif"
   ```
 
----
-
 ### 🥉 Organisation & architecture
 
 - **Isoler les accès HFSQL** dans des procédures dédiées :  
@@ -64,8 +88,6 @@ Cette charte regroupe l’ensemble des conventions de nommage, bonnes pratiques 
   `COL_Erreurs`, `COL_MessagesUI`
 - **Utiliser les événements standards WinDev** (`Initialisation`, `Fin d'affichage`, `Entrée dans champ`, etc.) de manière cohérente dans tout le projet
 - **Éviter l’usage d’étiquettes (`GOTO`)** sauf cas exceptionnels très encadrés (code généré, sortie unique)
-
----
 
 ### 🛠️ Performance & clarté
 
@@ -106,8 +128,6 @@ Cette charte regroupe l’ensemble des conventions de nommage, bonnes pratiques 
   ```wlangage
   TableAffiche(TAB_Produits, taReAffiche) // uniquement après une vraie modification
   ```
-
----
 
 ### 🔁 Convention de retour standardisée pour les procédures
 
