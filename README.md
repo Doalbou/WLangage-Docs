@@ -64,5 +64,3 @@ Les contributions sont les bienvenues ! Si vous souhaitez proposer des améliora
 ## 📄 Licence
 
 Ce projet est sous licence [MIT](https://opensource.org/licenses/MIT). Vous êtes libre de l'utiliser, le modifier et le distribuer selon les termes de cette licence.
-
----

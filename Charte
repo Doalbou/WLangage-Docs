@@ -1,0 +1,312 @@
+# 🔬 Convention de nommage WLangage (complète)
+
+Cette charte regroupe l’ensemble des conventions de nommage, bonnes pratiques de code, structuration des procédures et performances à respecter pour garantir un développement homogène, lisible et maintenable dans un projet WinDev / WLangage.
+
+---
+
+## 🔁 Structure et retour de procédure
+
+- ✅ Toujours utiliser `RENVOYER (...)` pour terminer une procédure. **Ne jamais utiliser `RETOUR (...)`** dans une procédure standard.
+- ✅ La valeur `vW_Retour` **ne doit être déclarée que si** plus d'une valeur de retour est nécessaire, en plus de `bW_Retour` et `cW_Retour`.
+- ✅ En cas de succès, préférer :
+
+  ```wlangage
+  RENVOYER (Vrai, cW_Retour, cP_DossierDestination)
+  ```
+
+  plutôt que d’assigner les valeurs à `bW_`, `cW_`, `vW_` avant un `RETOUR`.
+
+## ⚠️ Logique conditionnelle
+
+- ✅ Toujours expliciter les conditions booléennes :
+
+  ```wlangage
+  SI fDossierExiste(cP_Chemin) = Faux ALORS
+  ```
+
+  au lieu de :
+
+  ```wlangage
+  SI PAS fDossierExiste(cP_Chemin) ALORS
+  ```
+
+- ✅ Même chose pour les positifs : écrire `SI fFonction(...) = Vrai` plutôt que simplement `SI fFonction(...)`.
+
+## 📌 Bonnes pratiques complètes (WLangage / WinDev)
+
+### 🥇 Fondamentaux
+
+- Toujours déclarer **toutes les variables** en **début de procédure**, regroupées par type si possible.
+- Toujours **initialiser chaque variable**, même simple :
+  ```wlangage
+  cW_Texte ← ""
+  ```
+- Les **procédures internes** doivent toujours être placées à la **fin** de la procédure principale.
+- Une **procédure = une seule responsabilité** : éviter les effets de bord et les traitements multiples.
+- Ne jamais utiliser `Null` sans avoir **initialisé correctement** la variable avant.
+- Toujours utiliser un **nom au pluriel** :
+  - Pour les **tableaux** : `tsF_Lignes`, `tcW_Articles`
+  - Pour les **procédures** retournant plusieurs éléments : `ListeFactures`, `ObtenirArticles`
+- La **structure liée à un tableau** doit être au singulier : `strF_Produit` pour `tsF_Produits`
+- **Les noms de structures et d’énumérations** doivent être explicites et liés à leur domaine fonctionnel :  
+  `strF_Commande`, `enuG_TypeEtat`
+- **Utiliser les énumérations (`enu`)** pour éviter les valeurs magiques ou numériques arbitraires.
+- Tous les **composants visuels** doivent avoir un **préfixe IHM clair** :  
+  `BTN_Valider`, `SAI_Email`, `TAB_Commandes`
+- Regrouper les fonctions métier dans des **collections de procédures** (`COL_`).
+- Éviter tout **nom abrégé ou ambigu** dans le code métier.
+
+### 🥈 Lisibilité & cohérence
+
+- **Limiter la profondeur des procédures imbriquées**  
+  👉 Utiliser des retours anticipés (`RENVOYER`, `SORTIR`)  
+  (_aussi appelé "early return"_)
+- **Utiliser des noms clairs pour les procédures**, toujours commencer par un verbe :  
+  `CalculerMontant`, `VérifierStock`, `InitialiserFenêtre`
+- **Documenter les structures complexes** :
+  - Commentaire au-dessus de la `STRUCTURE` pour décrire son usage
+  - Commentaire à droite de chaque membre pour sa signification
+- **Documenter l’intention métier des traitements** :  
+  Ne pas écrire `// test`, mais `// Vérifie si le client est actif`
+- **Utiliser les constantes (`const`)** pour les clés fixes, statuts, types d’opération, messages
+- **Opérateur ternaire** (affectation conditionnelle lisible) :
+  ```wlangage
+  cW_Texte = bW_Actif ? "Actif" : "Inactif"
+  ```
+
+### 🥉 Organisation & architecture
+
+- **Isoler les accès HFSQL** dans des procédures dédiées :  
+  Exemples : `LireProduitParID`, `EnregistrerCommande`.  
+  Ne pas disperser les appels `HLit`, `HRecherche` dans le code métier.
+- **Éviter les effets de bord**  
+  Une procédure ne doit modifier une variable globale **que si c’est justifié**.  
+  Préférer modifier une variable **locale** et la retourner.
+- **Nommer les fichiers de procédures et fenêtres** de manière descriptive :  
+  `FEN_SaisieCommande`, `COL_GestionInventaire`
+- **Centraliser les messages et erreurs** dans des collections dédiées :  
+  `COL_Erreurs`, `COL_MessagesUI`
+- **Utiliser les événements standards WinDev** (`Initialisation`, `Fin d'affichage`, `Entrée dans champ`, etc.) de manière cohérente dans tout le projet
+- **Éviter l’usage d’étiquettes (`GOTO`)** sauf cas exceptionnels très encadrés (code généré, sortie unique)
+
+### 🛠️ Performance & clarté
+
+- **Optimiser le code** : ne pas créer de **variables intermédiaires inutiles** si elles ne sont pas nécessaires à la lisibilité ou au débogage :
+
+  ```wlangage
+  cW_Resultat = (eW_Total > 100) ? "Haut" : "Bas"
+  ```
+
+- **Limiter les appels système redondants**  
+  Si une fonction système (ex. `DateDuJour()`, `NomMachine()`) est utilisée plusieurs fois, stocker sa valeur dans une variable temporaire.
+
+- **Éviter les recalculs dans les boucles**  
+  Déplacer les calculs invariants en dehors de la boucle :
+
+  ```wlangage
+  nLongueur est un entier = Longueur(cW_Chaîne)
+  POUR i = 1 À 10
+      SI i < nLongueur ALORS ...
+  ```
+
+- **Privilégier les comparaisons numériques aux chaînes**  
+  Les entiers sont plus rapides et plus sûrs :
+
+  ```wlangage
+  SI nW_Type = 1 // plutôt que SI cW_Type = "Client"
+  ```
+
+- **OUVRIR et Fermer systématiquement les fichiers ou connexions avant et après usage**  
+  Même si WinDev les gère automatiquement, le faire manuellement améliore la stabilité :
+
+  ```wlangage
+  HFerme(FIC_Produits)
+  ```
+
+- **Limiter la surcharge d'affichage**  
+  Éviter de rafraîchir une table ou une fenêtre à chaque micro-modification :
+  ```wlangage
+  TableAffiche(TAB_Produits, taReAffiche) // uniquement après une vraie modification
+  ```
+
+### 🔁 Convention de retour standardisée pour les procédures
+
+- **Structure systématique recommandée** :
+
+  ```wlangage
+  bW_Retour est un booléen = Faux   // Booléen de succès ou d'échec
+  cW_Retour est une chaîne = ""     // Message d'erreur ou d'information
+  vW_Retour est un Variant = Null   // Valeur ou objet de retour si multiple (optionnel)
+  ```
+
+- **Appel type** :
+
+  ```wlangage
+  (bW_Retour, cW_Retour, vW_Retour) = Pg_Batch_GET_AccessToken(cP_BIB, cP_GGS)
+  SI bW_Retour = Faux ALORS RENVOYER (bW_Retour, cW_Retour, "")
+  ```
+
+- **Exemple résumé de procédure** :
+
+  ```wlangage
+  PROCÉDURE CPg_Batch_RecupereStatistique(cP_BIB est une chaîne, cP_GGS est une chaîne, cP_BatchID est une chaîne)
+
+  bW_Retour est un booléen = Faux
+  cW_Retour est une chaîne = ""
+  cW_Info est une chaîne = ""
+
+  (bW_Retour, cW_Retour) = Pg_Batch_GET_AccessToken(cP_BIB, cP_GGS)
+  SI bW_Retour = Faux ALORS RENVOYER (bW_Retour, cW_Retour, "")
+
+  (bW_Retour, cW_Retour) = Pg_Batch_GET_Statistics(cP_BatchID)
+  SI bW_Retour = Faux ALORS RENVOYER (bW_Retour, cW_Retour, "")
+
+  // Traitement des données...
+  RENVOYER (Vrai, "", cW_Info)
+  ```
+
+  👉 Cette structure garantit clarté, robustesse, standardisation du flux de retour et gestion propre des erreurs.
+
+---
+
+## 🔠 Types de données (préfixes)
+
+| Type                       | Préfixe   |
+| -------------------------- | --------- |
+| Avancé                     | `a`       |
+| Avancé dynamique           | `ad`      |
+| Booléen                    | `b`       |
+| Buffer                     | `bf`      |
+| Caractère                  | `c`       |
+| Chaîne (générique)         | `c`       |
+| Chaîne ANSI                | `ca`      |
+| Chaîne ASCIIZ              | `caz`     |
+| Chaîne fixe                | `cf`      |
+| Chaîne Pascal              | `cp`      |
+| Chaîne Unicode             | `cu`      |
+| Champ                      | `C`       |
+| Combinaison                | `comb`    |
+| Connexion HFSQL            | `cnx`     |
+| Date                       | `d`       |
+| DateHeure                  | `dh`      |
+| Description fichier HFSQL  | `df`      |
+| Description liaison HFSQL  | `dl`      |
+| Description rubrique HFSQL | `dr`      |
+| Durée                      | `du`      |
+| Entier                     | `e`       |
+| Entier système             | `es`      |
+| Entier 1 octet             | `e1`      |
+| Entier 2 octets            | `e2`      |
+| Entier 4 octets            | `es4`     |
+| Entier 8 octets            | `e8`      |
+| Énumération                | `enu`     |
+| Heure                      | `h`       |
+| Interface                  | `int`     |
+| Monétaire                  | `mo`      |
+| Mot de passe sécurisé      | `mdp`     |
+| Numérique (réel)           | `n`       |
+| Objet WinDev               | `ob`      |
+| Objet .NET                 | `obd`     |
+| Objet WebService           | `obw`     |
+| Objet WinDev + .NET        | `obwd`    |
+| Objet Automation           | `oba`     |
+| Objet Automation dynamique | `obad`    |
+| Objet dynamique non typé   | `obdnt`   |
+| Paramètre sans type        | `p`       |
+| Police                     | `pol`     |
+| Procédure                  | `proc`    |
+| Rectangle                  | —         |
+| Réel                       | `r`       |
+| Réel 4 octets              | `r4`      |
+| Requête                    | `rq`      |
+| Source de données          | `sd`      |
+| Structure                  | `str`     |
+| Structure dynamique        | `strd`    |
+| Tableau                    | `t`       |
+| Tableau associatif         | `ta`      |
+| Tableau dynamique          | `td`      |
+| Tableau fixe               | `tf`      |
+| UUID 128 bits              | `uuid128` |
+| UUID 256 bits              | `uuid256` |
+| Variable composée          | `vc`      |
+| Variant                    | `v`       |
+
+---
+
+## 🌍 Portées (suffixes)
+
+| Portée                 | Suffixe |
+| ---------------------- | ------- |
+| Membre de structure    | `MS_`   |
+| Membre instance classe | `M_`    |
+| Membre global classe   | `MG_`   |
+| Propriété d’objet      | `P_`    |
+| Propriété globale      | `PG_`   |
+| Globale collection     | `G`     |
+| Globale fenêtre        | `F`     |
+| Globale test groupe    | `GT`    |
+| Globale liste de tests | `LT`    |
+| Globale page           | `PA`    |
+| Globale plan d’action  | `PL`    |
+| Globale projet         | `G`     |
+| Globale test           | `T`     |
+| Globale état           | `E`     |
+| Locale procédure       | `W`     |
+
+---
+
+## 🧩 Composants IHM (fenêtres et pages)
+
+| Composant       | Préfixe                        |
+| --------------- | ------------------------------ |
+| Bouton          | `BTN_`                         |
+| Champ de saisie | `SAI_`                         |
+| Libellé         | `LIB_`                         |
+| Table           | `TAB_`                         |
+| Colonne         | `COL_`                         |
+| Combo           | `COM_`                         |
+| Zone répétée    | `ZR_`                          |
+| Onglet          | `ONG_`                         |
+| Image           | `IMG_`                         |
+| Jauge           | `JAU_`                         |
+| Planning        | `PLN_`                         |
+| Graphe          | `GRF_`                         |
+| Superchamp      | `SC_`                          |
+| Arbre           | `ARB_`                         |
+| Upload          | `UPL_`                         |
+| HTML            | `EDHTML_`, `LIBHTML_`, `HTML_` |
+| Zone multiligne | `ZM_`                          |
+| Checkbox        | `CHK_`                         |
+| Radio           | `RAD_`                         |
+| Interrupteur    | `INT_`                         |
+| Menu            | `MENU_`                        |
+| Option          | `OPT_`                         |
+| Page WebDev     | `PAGE_`                        |
+| Page Interne    | `PI_`                          |
+| Popup           | `POPUP_`                       |
+| État            | `ETAT_`                        |
+| Tableur         | `TBLR_`                        |
+| Graphe          | `GRF_`                         |
+
+---
+
+## 🏗️ Éléments projet
+
+| Élément                      | Préfixe    |
+| ---------------------------- | ---------- |
+| Classe                       | `C`        |
+| Collection procédures WinDev | `COL_`     |
+| Collection procédures WebDev | `NAV_`     |
+| Webservice                   | `WS_`      |
+| Fenêtre                      | `FEN_`     |
+| Fenêtre interne              | `FI_`      |
+| Page WebDev                  | `PAGE_`    |
+| Page Interne                 | `PI_`      |
+| Requête                      | `REQ_`     |
+| État                         | `ETAT_`    |
+| Modèle d'état                | `ETATMOD_` |
+| Image                        | `PIC_`     |
+| Test                         | `TEST_`    |
+| Télémétrie                   | `TLM_`     |
+
+---
